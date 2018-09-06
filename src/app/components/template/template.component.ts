@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
 })
 export class TemplateComponent implements OnInit {
 
-  user: Object = {
+  user: any = {
     name: null,
     lastname: null,
     email: null,

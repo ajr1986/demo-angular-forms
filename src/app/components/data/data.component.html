@@ -15,7 +15,7 @@
         <!-- Opcion 1 para referenciar al component anidado -->
         <div class="form-control-feedback" *ngIf="fg.get('fullname.name').errors?.required">This field is required</div>
         <!-- Opcion 2 para referenciar al component anidado -->
-        <div class="form-control-feedback" *ngIf="fg.controls['fullname'].controls['name'].errors?.minlength">At least {{ fg.get('fullname.name').errors.minlength.requiredLength }} characters</div>
+        <div class="form-control-feedback" *ngIf="fg.get('fullname.name').errors?.minlength">At least {{ fg.get('fullname.name').errors.minlength.requiredLength }} characters</div>
       </div>
     </div>
 
@@ -27,7 +27,7 @@
         <!-- Opcion 1 para referenciar al component anidado -->
         <div class="form-control-feedback" *ngIf="fg.get('fullname.lastname').errors?.required">This field is required</div>
         <!-- Opcion 2 para referenciar al component anidado -->
-        <div class="form-control-feedback" *ngIf="fg.controls['fullname'].controls['lastname'].errors?.minlength">At least {{ fg.controls['fullname'].controls['lastname'].errors.minlength.requiredLength }} characters</div>
+        <div class="form-control-feedback" *ngIf="fg.get('fullname.lastname').errors?.minlength">At least {{ fg.controls['fullname'].controls['lastname'].errors.minlength.requiredLength }} characters</div>
       </div>
     </div>
 
