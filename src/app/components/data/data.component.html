@@ -1,0 +1,59 @@
+<h4>Formularios
+  <small>data</small>
+</h4>
+<hr>
+<form [formGroup]="fg" (ngSubmit)="saveForm()">
+
+  <div formGroupName="fullname">
+
+    <div class="form-group row" [ngClass]="{'has-danger': !fg.get('fullname.name').valid && fg.get('fullname.name').touched }">
+      <label class="col-2 col-form-label">Name</label>
+      <div class="col-8">
+
+        <input class="form-control" formControlName="name" type="text" placeholder="Name">
+
+        <!-- Opcion 1 para referenciar al component anidado -->
+        <div class="form-control-feedback" *ngIf="fg.get('fullname.name').errors?.required">This field is required</div>
+        <!-- Opcion 2 para referenciar al component anidado -->
+        <div class="form-control-feedback" *ngIf="fg.controls['fullname'].controls['name'].errors?.minlength">At least {{ fg.get('fullname.name').errors.minlength.requiredLength }} characters</div>
+      </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{'has-danger': !fg.get('fullname.lastname').valid && fg.get('fullname.lastname').touched}">
+      <label class="col-2 col-form-label">Last name</label>
+      <div class="col-8">
+
+        <input class="form-control" formControlName="lastname" type="text" placeholder="Last name">
+        <!-- Opcion 1 para referenciar al component anidado -->
+        <div class="form-control-feedback" *ngIf="fg.get('fullname.lastname').errors?.required">This field is required</div>
+        <!-- Opcion 2 para referenciar al component anidado -->
+        <div class="form-control-feedback" *ngIf="fg.controls['fullname'].controls['lastname'].errors?.minlength">At least {{ fg.controls['fullname'].controls['lastname'].errors.minlength.requiredLength }} characters</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-group row" [ngClass]="{'has-danger': !fg.controls['email'].valid && fg.controls['email'].touched}">
+    <label class="col-2 col-form-label">Email</label>
+    <div class="col-md-8">
+
+      <input class="form-control" formControlName="email" type="email" placeholder="Email">
+      <div class="form-control-feedback" *ngIf="fg.controls['email'].errors?.required">This field is required</div>
+      <div class="form-control-feedback" *ngIf="fg.controls['email'].errors?.pattern">Invalid email format</div>
+    </div>
+  </div>
+
+
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary" [disabled]="!fg.valid">
+        Save
+      </button>
+    </div>
+  </div>
+
+  Form valid: {{ fg.valid }}
+
+</form>

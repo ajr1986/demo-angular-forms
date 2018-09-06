@@ -1,0 +1,91 @@
+<h4>Formularios
+  <small>template</small>
+</h4>
+<hr>
+<form (ngSubmit)="save(form)" #form="ngForm" novalidate="">
+
+  <div>
+
+    <div class="form-group row" [ngClass]="{'has-danger': (name.errors?.required || name.errors?.minlength) && name.touched}">
+      <label class="col-2 col-form-label">Name</label>
+      <div class="col-8">
+
+        <input class="form-control" type="text" placeholder="Name" name="name" [(ngModel)]="user.name" minlength="3" #name="ngModel"
+          required>
+
+        <div class="form-control-feedback" *ngIf="name.errors?.required">This field is required</div>
+        <div class="form-control-feedback" *ngIf="name.errors?.minlength">At least {{ name.errors.minlength.requiredLength }} characters</div>
+      </div>
+    </div>
+
+    <div class="form-group row" [ngClass]="{'has-danger': (lastname.errors?.required || lastname.errors?.minlength) && lastname.touched}">
+      <label class="col-2 col-form-label">Last name</label>
+      <div class="col-8">
+
+        <input class="form-control" type="text" placeholder="lastname" name="lastname" [(ngModel)]="user.lastname" minlength="3"
+          #lastname="ngModel" required>
+
+        <div class="form-control-feedback" *ngIf="lastname.errors?.required">This field is required</div>
+        <div class="form-control-feedback" *ngIf="lastname.errors?.minlength">At least {{ lastname.errors.minlength.requiredLength }} characters</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-group row" [ngClass]="{'has-danger': (email.errors?.required || email.errors?.pattern) && email.touched}">
+    <label class="col-2 col-form-label">Email</label>
+    <div class="col-md-8">
+
+      <input class="form-control" type="email" placeholder="Email" name="email" [(ngModel)]="user.email" required
+        pattern="[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,3}$" #email="ngModel">
+
+      <div class="form-control-feedback" *ngIf="email.errors?.required">This field is required</div>
+      <div class="form-control-feedback" *ngIf="email.errors?.pattern">Invalid email format</div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Country</label>
+    <div class="col-md-8">
+
+      <select class="form-control" name="country" [(ngModel)]="user.country">
+        <option value="">Select country</option>
+        <option *ngFor="let country of countries" [value]="country.code">{{ country.name }}</option>
+      </select>
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Gender</label>
+    <div class="col-md-8">
+
+      <label class="custom-control custom-radio">
+        <input [(ngModel)]="user.gender" value="male" name="gender" type="radio" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Male</span>
+      </label>
+      <label class="custom-control custom-radio">
+        <input [(ngModel)]="user.gender" value="female" name="gender" type="radio" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Female</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button [disabled]="!form.valid" type="submit" class="btn btn-outline-primary">
+        Save
+      </button>
+    </div>
+  </div>
+
+</form>
+
+<pre>
+
+  {{ user | json}}
+
+</pre>
